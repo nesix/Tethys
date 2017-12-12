@@ -10,5 +10,13 @@
   "require": {
     "php": ">=7.0",
     "ext-mbstring": "*"
+  },
+  "require-dev": {
+    "ext-imagick": "*",
+    "predis/predis": "1.1.*@dev"
+  },
+  "suggest": {
+    "ext-imagick": "For use Tethys\\Utils\\Image and Tethys\\Utils\\ImageFile",
+    "predis/predis": "For use Tethys\\Utils\\Redis"
   }
 }
