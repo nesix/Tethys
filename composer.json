@@ -1,0 +1,14 @@
+{
+  "name": "nesix/tethys-lib",
+  "type": "library",
+  "description": "PHP library",
+  "autoload": {
+    "psr-4": {
+      "Tethys\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=7.0",
+    "ext-mbstring": "*"
+  }
+}
