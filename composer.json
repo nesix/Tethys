@@ -13,7 +13,7 @@
   },
   "require-dev": {
     "ext-imagick": "*",
-    "predis/predis": "1.1.*@dev"
+    "predis/predis": "1.1.*@stable"
   },
   "suggest": {
     "ext-imagick": "For use Tethys\\Utils\\Image and Tethys\\Utils\\ImageFile",
