@@ -2,6 +2,7 @@
   "name": "nesix/tethys-lib",
   "type": "library",
   "description": "PHP library",
+  "license": "MIT",
   "autoload": {
     "psr-4": {
       "Tethys\\": "src/"
