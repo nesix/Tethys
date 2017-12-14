@@ -2,7 +2,6 @@
 
 class Tethys
 {
-
     /**
      * @var \Tethys\Core\Application
      */
