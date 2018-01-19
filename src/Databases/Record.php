@@ -12,12 +12,17 @@ use Tethys\Core\Model;
  */
 abstract class Record extends Model implements \IteratorAggregate, \ArrayAccess
 {
-
+    /**
+     * События перед изменениями
+     */
     const EVENT_BEFORE_SAVE = 'record_before_save';
     const EVENT_BEFORE_UPDATE = 'record_before_update';
     const EVENT_BEFORE_INSERT = 'record_before_insert';
     const EVENT_BEFORE_DELETE = 'record_before_delete';
 
+    /**
+     * События после изменений
+     */
     const EVENT_AFTER_SAVE = 'record_after_save';
     const EVENT_AFTER_UPDATE = 'record_after_update';
     const EVENT_AFTER_INSERT = 'record_after_insert';
