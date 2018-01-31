@@ -49,7 +49,7 @@ abstract class Connection extends Component implements RecordQueriesInterface
 
             try {
 
-                $this->dbh = new \PDO($this->getConnectionString(), $this->user, $this->password);
+                $this->dbh = new \PDO($this->getConnectionString(), $this->user, $this->password, $this->getConnectionOptions());
                 $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
             } catch (\PDOException $e) {
@@ -285,5 +285,13 @@ abstract class Connection extends Component implements RecordQueriesInterface
      * @return string|RecordFilter
      */
     abstract public function getFilterClass();
+
+    /**
+     * @return array
+     */
+    public function getConnectionOptions()
+    {
+        return [];
+    }
 
 }

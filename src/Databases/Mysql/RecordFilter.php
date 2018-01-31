@@ -236,7 +236,7 @@ class RecordFilter extends \Tethys\Databases\RecordFilter
     {
         switch ($fieldType) {
             case (Model::FIELD_GUID):
-                return 'UNHEX('.$this->connection->escape( preg_replace('/[^\da-f]+/', '', $value) ).')';
+                return 'UNHEX('.$this->connection->escape( preg_replace('/[^\da-f]+/i', '', $value) ).')';
             case (Model::FIELD_IP):
                 return 'INET_ATON('.$this->connection->escape($value).')';
             default:
