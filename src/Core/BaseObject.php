@@ -2,13 +2,19 @@
 
 namespace Tethys\Core;
 
+
 /**
- * Basic object
+ * Class BaseObject
+ * @package Tethys\Core
+ *
+ * Базовый объект
+ *
  */
 class BaseObject
 {
 
     /**
+     * BaseObject constructor.
      * @param array $row
      */
     public function __construct(array $row = [])
@@ -18,6 +24,8 @@ class BaseObject
     }
 
     /**
+     * заполнение свойств объекта
+     *
      * @param array $row
      * @return $this
      */
@@ -32,14 +40,17 @@ class BaseObject
     }
 
     /**
-     * Init object
+     * Инициализация объекта
+     *
+     * @return void
      */
     public function init()
     {
     }
 
     /**
-     * Get current class name
+     * Возвращает имя класса вызвавшего функцию
+     *
      * @return string
      */
     public static function className()
@@ -48,6 +59,8 @@ class BaseObject
     }
 
     /**
+     * Создает объект класса вызвавшего функцию
+     *
      * @param array $row
      * @return static
      */
@@ -55,4 +68,5 @@ class BaseObject
     {
         return new static($row);
     }
+
 }

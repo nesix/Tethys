@@ -2,12 +2,21 @@
 
 namespace Tethys\Web;
 
+
 use Tethys\Core\InvalidConfigException;
 use Tethys\Core\Validator;
+use Tethys\Utils\StrLib;
+
 
 require __DIR__.'/Libs/XssFilter.php';
 
+
 /**
+ * Class Request
+ * @package Tethys\Web
+ *
+ *
+ *
  * SERVER
  * @property string $uri
  * @property string $url
@@ -25,6 +34,7 @@ require __DIR__.'/Libs/XssFilter.php';
  * @property string $serverAdmin
  * @property string $authUser
  * @property string $authPassword
+ * @property string $ifModifiedSince
  * @property bool   $isSecureConnection
  * @property bool   $isDevIp
  *
@@ -50,6 +60,7 @@ require __DIR__.'/Libs/XssFilter.php';
  * @property int $pageNumber
  *
  */
+
 class Request extends \Tethys\Core\Request
 {
 
@@ -325,6 +336,15 @@ class Request extends \Tethys\Core\Request
     protected function getAuthPassword()
     {
         return $_SERVER['PHP_AUTH_PW'] ?? '';
+    }
+
+    /**
+     * @return string
+     */
+    protected function getIfModifiedSince()
+    {
+        $ifModifiedSince = trim($_SERVER['HTTP_IF_MODIFIED_SINCE'] ?? '');
+        return $ifModifiedSince ? StrLib::gmtDate($ifModifiedSince) : null;
     }
 
     protected function getIsGet()

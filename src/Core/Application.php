@@ -2,23 +2,34 @@
 
 namespace Tethys\Core;
 
+
 /**
- * Base application class
+ * Class Application
+ * @package Tethys\Core
+ *
+ * Базовый класс приложения
+ *
  */
 abstract class Application extends Component
 {
 
     /**
+     * Корневая директория
+     *
      * @var string
      */
     public $baseDir;
 
     /**
+     * Настройки компонентов
+     *
      * @var array
      */
     public $components;
 
     /**
+     * Экземпляры объектов-компонентов
+     *
      * @var array
      */
     protected $_components = [];
@@ -26,6 +37,9 @@ abstract class Application extends Component
     /**
      * Application constructor.
      * @param array $row
+     * @throws ComponentNotFoundException
+     * @throws UnknownComponentClassException
+     * @throws UnknownComponentException
      */
     public function __construct(array $row = [])
     {
@@ -43,9 +57,13 @@ abstract class Application extends Component
     }
 
     /**
+     * Создает экземпляр компоненты
+     *
      * @param string $id
-     * @return  Component
-     * @throws \Exception
+     * @return Component
+     * @throws ComponentNotFoundException
+     * @throws UnknownComponentClassException
+     * @throws UnknownComponentException
      */
     public function get($id)
     {
@@ -72,7 +90,9 @@ abstract class Application extends Component
         return $this->_components[$id];
     }
 
-
+    /**
+     * @return int
+     */
     public function run()
     {
         try {
@@ -97,9 +117,11 @@ abstract class Application extends Component
     abstract public function handleRequest($request);
 
     /**
-     * @param $route
+     * @param string $route
      * @return array
-     * @throws Exception
+     * @throws BadRouteException
+     * @throws ControllerNotFoundException
+     * @throws \ReflectionException
      */
     public function getController($route)
     {
@@ -134,7 +156,12 @@ abstract class Application extends Component
     }
 
     /**
+     * Маршрутизация
+     *
      * @return Component|RoutesManager
+     * @throws ComponentNotFoundException
+     * @throws UnknownComponentClassException
+     * @throws UnknownComponentException
      */
     public function getRoutesManager()
     {
@@ -142,7 +169,12 @@ abstract class Application extends Component
     }
 
     /**
+     * Обработчик ошибок
+     *
      * @return Component|ErrorHandler
+     * @throws ComponentNotFoundException
+     * @throws UnknownComponentClassException
+     * @throws UnknownComponentException
      */
     public function getErrorHandler()
     {
@@ -150,6 +182,8 @@ abstract class Application extends Component
     }
 
     /**
+     * Возвращает классы компонент "по-умолчанию"
+     *
      * @return array
      */
     public static function defaultComponentsClasses()

@@ -2,19 +2,31 @@
 
 namespace Tethys\Web;
 
+
 use Tethys\Core\Component;
 use Tethys\Core\Controller;
 use Tethys\Core\Exception;
 
 /**
+ * Class Application
+ * @package Tethys\Web
+ *
+ * Web-приложение
+ *
  */
 class Application extends \Tethys\Core\Application
 {
 
     /**
+     * Обработка запроса
+     *
      * @param Request $request
      * @return Component|Response
+     * @throws BadRouteHttpException
      * @throws Exception
+     * @throws \ReflectionException
+     * @throws \Tethys\Core\BadRouteException
+     * @throws \Tethys\Core\ControllerNotFoundException
      */
     public function handleRequest($request)
     {
@@ -63,6 +75,9 @@ class Application extends \Tethys\Core\Application
 
     /**
      * @return Response|Component
+     * @throws \Tethys\Core\ComponentNotFoundException
+     * @throws \Tethys\Core\UnknownComponentClassException
+     * @throws \Tethys\Core\UnknownComponentException
      */
     public function getResponse()
     {

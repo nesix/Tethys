@@ -2,8 +2,26 @@
 
 namespace Tethys\Utils;
 
+/**
+ * Class StrLib
+ * @package Tethys\Utils
+ *
+ * Строковые функции
+ *
+ */
 class StrLib
 {
+
+    /**
+     * @param string|int $time
+     * @return false|string
+     */
+    public static function gmtDate($time)
+    {
+        $time = is_numeric($time) ? $time : strtotime($time);
+        return $time ? gmdate('D, d M Y H:i:s \G\M\T', $time) : '';
+    }
+
 
     public static function byteLength($string)
     {
