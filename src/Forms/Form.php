@@ -73,7 +73,13 @@ class Form extends Component
         $data = $fieldArguments;
 
         if ($direct) {
-            $data['name'] = $fieldName;
+            $data = array_merge($fieldArguments, [
+                'id' => ($this->field_id_prefix?$this->field_id_prefix.'_':'').($this->prefix ? ( $this->prefix.'_'.$fieldName ) : $fieldName).( $this->index > 1 ? '_'.$this->index : ''),
+                'name' => $fieldName,
+                'value' => $this->post[$fieldName] ?? null,
+                'error' => $this->errors[$fieldName] ?? '',
+            ]);
+//            $data['name'] = $fieldName;
             return $this->view()->renderFile($template, $data, $this);
         }
 
