@@ -76,7 +76,7 @@ class Form extends Component
             $data = array_merge($fieldArguments, [
                 'id' => ($this->field_id_prefix?$this->field_id_prefix.'_':'').($this->prefix ? ( $this->prefix.'_'.$fieldName ) : $fieldName).( $this->index > 1 ? '_'.$this->index : ''),
                 'name' => $fieldName,
-                'value' => $this->post[$fieldName] ?? null,
+                'value' => $this->post[$fieldName] ?? ( $fieldArguments['value'] ?? null ),
                 'error' => $this->errors[$fieldName] ?? '',
             ]);
 //            $data['name'] = $fieldName;
