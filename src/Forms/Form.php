@@ -46,7 +46,7 @@ class Form extends Component
     {
         /** @var Request $request */
         $request = \Tethys::request();
-        return $this->hidden($request->csrfParam, [ 'value' => $request->getCsrfToken(true) ], true);
+        return $this->hidden($request->csrfParam, [ 'primaryValue' => $request->getCsrfToken(true) ], true);
     }
 
     public function csrfValidate($errorMessage = '')
