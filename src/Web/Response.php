@@ -2,12 +2,20 @@
 
 namespace Tethys\Web;
 
+
 use Tethys\Core\InvalidConfigException;
 use Tethys\Core\InvalidParamException;
 
 /**
+ * Class Response
+ * @package Tethys\Web
+ *
+ * Server response
+ *
  * @property CookieCollection $cookies
  * @property int $statusCode
+ * @property string $lastModified
+ *
  */
 class Response extends \Tethys\Core\Response
 {
@@ -139,6 +147,16 @@ class Response extends \Tethys\Core\Response
             $this->statusText = $text;
         }
         return $this;
+    }
+
+    /**
+     * @param int|string $date
+     * @return void
+     */
+    public function setLastModified($date)
+    {
+        $date = is_numeric($date) ? $date : strtotime($date);
+        $date && $this->getHeaders()->add('Last-Modified', gmdate("D, d M Y H:i:s \G\M\T", $date));
     }
 
     public function getIsInvalid()
