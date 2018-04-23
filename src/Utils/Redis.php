@@ -2,10 +2,13 @@
 
 namespace Tethys\Utils;
 
+
 use Predis\Client;
 use Tethys\Core\Component;
 
 /**
+ * Class Redis
+ * @package Tethys\Utils
  *
  * @property Client $server
  *
@@ -120,6 +123,10 @@ class Redis extends Component implements \ArrayAccess
         return $this->getServer()->incr($key);
     }
 
+    /**
+     * @param string $key
+     * @param callable $function
+     */
     public function transaction($key, callable $function)
     {
 //        $pub = $this->getServer()->pubSubLoop();
@@ -130,10 +137,13 @@ class Redis extends Component implements \ArrayAccess
 //        $this->getServer()->exec();
     }
 
+    /**
+     * @var Client
+     */
     private $_redis;
 
     /**
-     * @return Client;
+     * @return Client
      */
     public function getServer()
     {
@@ -144,7 +154,7 @@ class Redis extends Component implements \ArrayAccess
     }
 
     /**
-     * @param mixed $offset
+     * @param string $offset
      * @return bool
      */
     public function offsetExists($offset)
@@ -153,7 +163,7 @@ class Redis extends Component implements \ArrayAccess
     }
 
     /**
-     * @param mixed $offset
+     * @param string $offset
      * @return string
      */
     public function offsetGet($offset)
@@ -164,6 +174,7 @@ class Redis extends Component implements \ArrayAccess
     /**
      * @param string $offset
      * @param string $value
+     * @return void
      */
     public function offsetSet($offset, $value)
     {
@@ -172,6 +183,7 @@ class Redis extends Component implements \ArrayAccess
 
     /**
      * @param string $offset
+     * @return void
      */
     public function offsetUnset($offset)
     {
