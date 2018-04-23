@@ -344,7 +344,11 @@ class Request extends \Tethys\Core\Request
     protected function getIfModifiedSince()
     {
         $ifModifiedSince = trim($_SERVER['HTTP_IF_MODIFIED_SINCE'] ?? '');
-        return $ifModifiedSince ? StrLib::gmtDate($ifModifiedSince) : null;
+        if (!$ifModifiedSince) return null;
+        if (!is_numeric($ifModifiedSince)) $ifModifiedSince = strtotime($ifModifiedSince);
+        return $ifModifiedSince ? date('Y-m-d H:i:s', $ifModifiedSince) : null;
+//        $ifModifiedSince = trim($_SERVER['HTTP_IF_MODIFIED_SINCE'] ?? '');
+//        return $ifModifiedSince ? StrLib::gmtDate($ifModifiedSince) : null;
     }
 
     protected function getIsGet()
