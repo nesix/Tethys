@@ -20,7 +20,7 @@ class Routes extends Component
 
         foreach ($this->rules as $reg=>$params) {
 
-            if (preg_match('#^'.$reg.'$#', $request->uri, $matches)) {
+            if (preg_match('#^'.$reg.'$#u', $request->uri, $matches)) {
 
                 $defParams = [];
                 foreach ($matches as $i=>$match) {
