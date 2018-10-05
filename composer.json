@@ -10,7 +10,8 @@
   },
   "require": {
     "php": ">=7.0",
-    "ext-mbstring": "*"
+    "ext-mbstring": "*",
+    "ext-pdo": "*"
   },
   "require-dev": {
     "ext-imagick": "*",

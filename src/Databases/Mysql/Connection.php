@@ -176,7 +176,14 @@ class Connection extends \Tethys\Databases\Connection
      */
     public function deleteObject(Record $record)
     {
-        // TODO: Implement deleteObject() method.
+        try {
+            $id = $record->getId();
+            if ($id) {
+                $sql = 'DELETE FROM '.$record::getTable().' WHERE id='.$this->escape($id).' LIMIT 1;';
+                $this->dbh()->query($sql);
+            }
+        } catch (\Throwable $t) {
+        }
     }
 
 }

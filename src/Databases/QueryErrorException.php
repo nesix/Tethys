@@ -5,7 +5,7 @@ namespace Tethys\Databases;
 class QueryErrorException extends DatabaseErrorException
 {
 
-    public function getName()
+    public function getTitle()
     {
         return 'Query error';
     }
